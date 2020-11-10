@@ -46,4 +46,10 @@ public class QueueNode<T> {
     public QueueNode getChild(){                       //Returns the child of this Node
         return child;
     }
+    public void setChild(QueueNode child) {
+        if (!hasChild) {
+            this.child = child;
+            hasChild = true;
+        }
+    }
 }
