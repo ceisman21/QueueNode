@@ -5,19 +5,24 @@ public class QueueTester {
         Queue theQueue = new Queue();
         Scanner s = new Scanner(System.in);
         System.out.println("Hello, and welcome to the Queue tester!");
-        System.out.println("First, I'll need three inputs from you...");
-        System.out.print("Please give me an Input 1: ");
-        theQueue.enqueue(s.next());
-        System.out.print("\nPlease give me an Input 2: ");
-        theQueue.enqueue(s.next());
-        System.out.print("\nPlease give me an Input 3: ");
-        theQueue.enqueue(s.next());
+        System.out.println("Testing length: " + theQueue.size());
+        System.out.println("Testing isEmpty: " + theQueue.isEmpty());
+        System.out.println("How many inputs would you like to put in the stack (give me a number)...");
+        int len = s.nextInt();
+        for (int x = 1; x <= len; x++) {
+            System.out.print("Please give me an Input " + x + ": ");
+            theQueue.enqueue(s.next());
+            System.out.print("\n");
+        }
         System.out.println("\n\n");
+        System.out.println("Testing length: " + theQueue.size());
+        System.out.println("Testing isEmpty: " + theQueue.isEmpty());
         System.out.println("Now, we will text to make sure that these Queue Items are working properly.\n\n");
-        System.out.println("Should Be input 1:" +  theQueue.dequeue());
-        System.out.println("Should Be input 2:" +  theQueue.dequeue());
-        System.out.println("Should Be input 3:" +  theQueue.dequeue());
-
-        theQueue.enqueue("");
+        for (int x = 1; x <= len; x++) {
+            System.out.print("This should be your input  " + x + ": ");
+            System.out.println(theQueue.dequeue());
+        }
+        System.out.println("Testing length after dequeue: " + theQueue.size());
+        System.out.println("Testing isEmpty after dequeue: " + theQueue.isEmpty());
     }
 }

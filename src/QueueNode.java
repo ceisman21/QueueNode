@@ -32,9 +32,19 @@ public class QueueNode<T> {
     }
     public QueueNode(QueueNode tempNode) {             //Constructor with annother node
         //Initialize variables
-        data = (T)(tempNode.getData());
-        hasChild = tempNode.hasChild();
-        child = tempNode.getChild();
+        if (tempNode == null){
+            this.data = data;
+            hasChild = false;
+            this.child = child;
+        } else {
+            if(tempNode.getData() == null) {
+                this.data = null;
+            } else {
+                data = (T)(tempNode.getData());
+            }
+            hasChild = tempNode.hasChild();
+            child = tempNode.getChild();
+        }
     }
 
     public T getData(){                                //Returns the Data of this node
@@ -47,9 +57,7 @@ public class QueueNode<T> {
         return child;
     }
     public void setChild(QueueNode child) {
-        if (!hasChild) {
             this.child = child;
             hasChild = true;
-        }
     }
 }

@@ -13,20 +13,26 @@ public class Queue<T>{
 
     public Queue() {                                        //Empty Constructor.
         length = 0;
-        nextNode = null;
+        nextNode = new QueueNode(null);
     }
     public Queue(QueueNode inNode) {                    //Constructor with an initial node
         QueueNode tempNode = new QueueNode(inNode);
         length = 1;
         nextNode = tempNode;
     }
-    void enqueue(T element) {                                  //add an element
+    void enqueue(T element) {//add an element
+        System.out.print(element);
         if(length == 0) {                                   //If the stack has no items
             QueueNode tempNode = new QueueNode(element);
-            nextNode = tempNode;
-        } else {                                            //If the Queue already exists
+            nextNode = new QueueNode(tempNode);
+        } else { //If the Queue already exists
+
             QueueNode copyNode = new QueueNode(element);
-            nextNode.setChild(copyNode);
+            QueueNode tempNode = nextNode;
+            while (tempNode.hasChild()) {
+                tempNode = tempNode.getChild();
+            }
+            tempNode.setChild(copyNode);
         }
         length++;
     }
@@ -34,8 +40,10 @@ public class Queue<T>{
         T tempData = peek();
         if (length == 1 || length == 0) {
             length = 0;
+            nextNode = new QueueNode(null);
         } else {
-            nextNode = nextNode.getChild();
+            QueueNode tempnode = new QueueNode(nextNode.getChild());
+            nextNode = tempnode;
             length--;
         }
         return tempData;
